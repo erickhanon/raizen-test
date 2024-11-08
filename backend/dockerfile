@@ -1,0 +1,19 @@
+# Usar uma imagem base do Python
+FROM python:3.9
+
+# Configurar o diretório de trabalho
+WORKDIR /app
+
+# Copiar e instalar as dependências
+COPY requirements.txt .
+RUN pip install -r requirements.txt
+
+# Copiar o código para o container
+COPY . .
+
+# Expôr a porta
+EXPOSE 5000
+
+# Comando para iniciar a aplicação
+CMD ["sh", "-c", "python3 init_db.py && python3 app.py"]
+
